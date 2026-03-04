@@ -1,5 +1,14 @@
 # Lucky Breaks - Trading Card Breaks Website
 
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=githubactions&logoColor=white)
+![eBay](https://img.shields.io/badge/eBay_Scraper-E53238?style=flat&logo=ebay&logoColor=white)
+![License](https://img.shields.io/badge/License-Private-lightgrey?style=flat)
+![Status](https://img.shields.io/badge/Status-Active-00ff88?style=flat)
+
 A dark-themed, mobile-responsive landing page and inventory browser for **Lucky Breaks**, a trading card break business based in Vancouver, WA. The site captures emails for VIP early access, displays upcoming breaks, showcases live eBay inventory (auto-scraped every 2 hours), runs a weekly giveaway, and features community social proof via a Facebook engagement bar.
 
 ---
@@ -44,16 +53,19 @@ jimStore/
 ├── .github/
 │   └── workflows/
 │       └── scrape.yml          # GitHub Actions workflow (runs every 2h)
+├── css/
+│   └── styles.css              # All styles (single file, mobile-first responsive)
+├── js/
+│   ├── app.js                  # Landing page logic (breaks, modals, forms, inventory preview)
+│   ├── inventory.js            # Inventory page logic (full listing grid, timestamp)
+│   └── likes.js                # Shared like button logic (registration, localStorage, UI)
 ├── data/
 │   └── inventory.json          # Auto-generated eBay listings data
 ├── img/
 │   └── logo.png                # Site logo (header + footer)
 ├── index.html                  # Landing page (hero, breaks, inventory preview, giveaway)
 ├── inventory.html              # Full inventory page (all eBay listings)
-├── styles.css                  # All styles (single file, mobile-first responsive)
-├── app.js                      # Landing page logic (breaks, modals, forms, inventory preview)
-├── inventory.js                # Inventory page logic (full listing grid, timestamp)
-├── likes.js                    # Shared like button logic (registration, localStorage, UI)
+├── giveaway.html               # Giveaway page (past winners, entry)
 ├── scraper.py                  # eBay scraper script (Python + BeautifulSoup)
 ├── requirements.txt            # Python dependencies (requests, beautifulsoup4)
 ├── package.json                # Project metadata
