@@ -369,6 +369,92 @@ ul { list-style: none; }
 
 .header-nav a:hover { color: var(--color-text); }
 
+/* ===== Store Status ===== */
+.store-status {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.store-status--open {
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  color: var(--color-green);
+}
+
+.store-status--closed {
+  background: rgba(255, 51, 102, 0.1);
+  border: 1px solid rgba(255, 51, 102, 0.3);
+  color: var(--color-pink);
+}
+
+.store-status-icon {
+  flex-shrink: 0;
+}
+
+.store-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.store-status--open .store-status-dot {
+  background: var(--color-green);
+  box-shadow: 0 0 6px var(--color-green);
+  animation: status-pulse-green 2s ease-in-out infinite;
+}
+
+.store-status--closed .store-status-dot {
+  background: var(--color-pink);
+  box-shadow: 0 0 4px var(--color-pink);
+  animation: status-pulse-red 3s ease-in-out infinite;
+}
+
+@keyframes status-pulse-green {
+  0%, 100% { box-shadow: 0 0 4px var(--color-green); transform: scale(1); }
+  50% { box-shadow: 0 0 12px var(--color-green), 0 0 24px rgba(0, 255, 136, 0.3); transform: scale(1.2); }
+}
+
+@keyframes status-pulse-red {
+  0%, 100% { box-shadow: 0 0 4px var(--color-pink); opacity: 1; }
+  50% { box-shadow: 0 0 8px var(--color-pink); opacity: 0.6; }
+}
+
+.store-status::after {
+  content: 'Wed - Sun: 6PM - 11PM PST';
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  padding: 8px 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.store-status:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ===== Buttons ===== */
 .btn {
   display: inline-flex;
