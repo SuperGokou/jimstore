@@ -370,9 +370,8 @@ function updateStoreStatus() {
   var day = pst.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
   var hour = pst.getHours();
 
-  // Open: Wed(3)-Sun(0), 6PM-11PM PST
-  var openDays = [0, 3, 4, 5, 6]; // Sun, Wed, Thu, Fri, Sat
-  var isOpen = openDays.includes(day) && hour >= 18 && hour < 23;
+  // Open: Tue(2)-Sun(0), 10AM-7PM PST -- Closed Monday(1)
+  var isOpen = day !== 1 && hour >= 10 && hour < 19;
 
   var storeIcon = '<svg class="store-status-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>';
   if (isOpen) {

@@ -450,7 +450,7 @@ ul { list-style: none; }
 }
 
 .store-status::after {
-  content: 'Wed - Sun: 6PM - 11PM PST';
+  content: 'Tue - Sun: 10AM - 7PM PST \A Mon: Closed';
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
@@ -461,7 +461,7 @@ ul { list-style: none; }
   font-size: 12px;
   font-weight: 500;
   color: var(--color-text-muted);
-  white-space: nowrap;
+  white-space: pre;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-4px);
