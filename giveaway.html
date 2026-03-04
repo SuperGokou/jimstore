@@ -52,6 +52,76 @@
     </div>
   </header>
 
+  <!-- Daily Slot Machine -->
+  <section class="section section-daily-draw">
+    <div class="daily-draw-glow daily-draw-glow--pink"></div>
+    <div class="daily-draw-glow daily-draw-glow--purple"></div>
+    <div class="container">
+      <div class="section-header section-header--center">
+        <div class="pill pill--pink">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c.5 3.5 2.04 5.22 4 6-2.08 1.35-3.5 3.44-4 7-0.5-3.56-1.92-5.65-4-7 1.96-.78 3.5-2.5 4-6z"/></svg>
+          <span>Drawn Every Day</span>
+        </div>
+        <h1 class="section-title" style="font-size:clamp(32px,5vw,52px)">
+          Daily Card
+          <span class="text-gradient-purple">Slot Machine!</span>
+        </h1>
+        <p class="section-subtitle">Spin the reels for your chance to win today's card. Match 3 to enter the daily draw!</p>
+        <div id="daily-draw-countdown" class="daily-draw-countdown" style="justify-content:center;align-items:center;margin-top:20px;"></div>
+      </div>
+
+      <div class="slots-wrapper">
+        <!-- Prize card -->
+        <div class="slots-prize-card">
+          <img src="img/givewaycard.jpg" alt="Today's prize" loading="lazy"
+               onerror="this.parentElement.style.background='var(--color-surface)'">
+          <div class="slots-prize-label">Today's Prize</div>
+        </div>
+
+        <!-- Slot machine -->
+        <div class="slots-machine">
+          <div class="slots-top-bar">
+            <span class="slots-top-light"></span>
+            <span class="slots-top-light"></span>
+            <span class="slots-top-light"></span>
+            <span class="slots-top-title">LUCKY BREAKS</span>
+            <span class="slots-top-light"></span>
+            <span class="slots-top-light"></span>
+            <span class="slots-top-light"></span>
+          </div>
+          <div class="slots-reels-frame">
+            <div class="slots-reel-window" id="reel-1">
+              <div class="slots-reel-strip" id="strip-1"></div>
+            </div>
+            <div class="slots-reel-divider"></div>
+            <div class="slots-reel-window" id="reel-2">
+              <div class="slots-reel-strip" id="strip-2"></div>
+            </div>
+            <div class="slots-reel-divider"></div>
+            <div class="slots-reel-window" id="reel-3">
+              <div class="slots-reel-strip" id="strip-3"></div>
+            </div>
+            <div class="slots-payline"></div>
+          </div>
+          <div id="slots-result" class="slots-result" hidden></div>
+          <div class="slots-controls">
+            <form id="slots-email-form" class="slots-email-form">
+              <div class="input-wrap">
+                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+                <input type="email" name="email" placeholder="Enter email to spin..." required autocomplete="email" class="input" id="slots-email">
+              </div>
+              <button type="submit" class="btn btn-purple btn-spin" id="spin-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+                SPIN
+              </button>
+            </form>
+          </div>
+          <p class="daily-draw-fine-print" style="text-align:center;margin-top:12px;">One spin per email per day. Must be 18+. No purchase necessary.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Past Winners -->
   <section class="section section-past-winners giveaway-page-header">
     <div class="container">
@@ -270,9 +340,156 @@
       document.getElementById('footer-success').hidden = false;
     });
 
+    // ===== Giveaway Countdown (to next Sunday 6 PM) =====
+    function updateCountdown() {
+      var el = document.getElementById('daily-draw-countdown');
+      var now = new Date();
+      var nextSunday = new Date(now);
+      var dayOfWeek = now.getDay();
+      var daysUntil = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+      nextSunday.setDate(now.getDate() + daysUntil);
+      nextSunday.setHours(18, 0, 0, 0);
+      if (nextSunday <= now) {
+        nextSunday.setDate(nextSunday.getDate() + 7);
+      }
+      var diff = nextSunday - now;
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      el.innerHTML =
+        '<span class="countdown-label">Drawing in</span>' +
+        '<div class="countdown-digits">' +
+          '<div class="countdown-block"><span class="countdown-num">' + String(d).padStart(2, '0') + '</span><span class="countdown-unit">days</span></div>' +
+          '<span class="countdown-sep">:</span>' +
+          '<div class="countdown-block"><span class="countdown-num">' + String(h).padStart(2, '0') + '</span><span class="countdown-unit">hrs</span></div>' +
+          '<span class="countdown-sep">:</span>' +
+          '<div class="countdown-block"><span class="countdown-num">' + String(m).padStart(2, '0') + '</span><span class="countdown-unit">min</span></div>' +
+          '<span class="countdown-sep">:</span>' +
+          '<div class="countdown-block"><span class="countdown-num">' + String(s).padStart(2, '0') + '</span><span class="countdown-unit">sec</span></div>' +
+        '</div>';
+    }
+
+    // ===== Slot Machine =====
+    var SYMBOLS = [
+      { icon: '\u{1F3C8}', name: 'Football' },
+      { icon: '\u{26BE}',  name: 'Baseball' },
+      { icon: '\u{2B50}',  name: 'Star' },
+      { icon: '\u{1F3C6}', name: 'Trophy' },
+      { icon: '\u{1F48E}', name: 'Diamond' },
+      { icon: '\u{1F0CF}', name: 'Joker' },
+    ];
+    var REEL_ITEMS = 30;
+    var ITEM_HEIGHT = 80;
+    var spinning = false;
+
+    function buildReels() {
+      for (var r = 1; r <= 3; r++) {
+        var strip = document.getElementById('strip-' + r);
+        strip.innerHTML = '';
+        for (var i = 0; i < REEL_ITEMS; i++) {
+          var sym = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+          var div = document.createElement('div');
+          div.className = 'slots-symbol';
+          div.textContent = sym.icon;
+          div.dataset.name = sym.name;
+          strip.appendChild(div);
+        }
+        strip.style.transform = 'translateY(0)';
+      }
+    }
+
+    function spinReel(reelNum, finalSymbol, delay) {
+      return new Promise(function(resolve) {
+        var strip = document.getElementById('strip-' + reelNum);
+        // set the landing symbol near the end
+        var landIndex = REEL_ITEMS - 3;
+        var items = strip.children;
+        items[landIndex].textContent = finalSymbol.icon;
+        items[landIndex].dataset.name = finalSymbol.name;
+
+        var targetY = -(landIndex * ITEM_HEIGHT);
+        setTimeout(function() {
+          strip.style.transition = 'transform ' + (1.5 + reelNum * 0.4) + 's cubic-bezier(0.15, 0.8, 0.3, 1)';
+          strip.style.transform = 'translateY(' + targetY + 'px)';
+          strip.addEventListener('transitionend', function handler() {
+            strip.removeEventListener('transitionend', handler);
+            resolve();
+          });
+        }, delay);
+      });
+    }
+
+    function getResults() {
+      // ~15% chance of 3-match win
+      var roll = Math.random();
+      if (roll < 0.15) {
+        var sym = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+        return [sym, sym, sym];
+      }
+      // ensure no 3-match
+      var r = [];
+      for (var i = 0; i < 3; i++) {
+        r.push(SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]);
+      }
+      if (r[0].name === r[1].name && r[1].name === r[2].name) {
+        var alt = SYMBOLS[(SYMBOLS.indexOf(r[0]) + 1) % SYMBOLS.length];
+        r[2] = alt;
+      }
+      return r;
+    }
+
+    function doSpin(email) {
+      if (spinning) return;
+      spinning = true;
+      var btn = document.getElementById('spin-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<svg class="spin-icon-anim" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> SPINNING...';
+
+      var resultEl = document.getElementById('slots-result');
+      resultEl.hidden = true;
+
+      buildReels();
+      var results = getResults();
+      var isWin = results[0].name === results[1].name && results[1].name === results[2].name;
+
+      Promise.all([
+        spinReel(1, results[0], 0),
+        spinReel(2, results[1], 200),
+        spinReel(3, results[2], 400),
+      ]).then(function() {
+        spinning = false;
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> SPIN AGAIN';
+
+        resultEl.hidden = false;
+        if (isWin) {
+          resultEl.className = 'slots-result slots-result--win';
+          resultEl.innerHTML =
+            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 010-5C8 4 9 9 9 9z"/><path d="M18 9h1.5a2.5 2.5 0 000-5C16 4 15 9 15 9z"/><path d="M4 22h16"/><path d="M12 13v9"/></svg>' +
+            '<strong>3x ' + results[0].icon + ' -- YOU WIN!</strong> You\'re entered in today\'s daily draw!';
+          console.log('[Daily Draw Entry - WIN]', email, results[0].name);
+        } else {
+          resultEl.className = 'slots-result slots-result--lose';
+          resultEl.innerHTML =
+            '<span>No match this time. Try again!</span>';
+          console.log('[Daily Draw Spin - No Match]', email);
+        }
+      });
+    }
+
+    document.getElementById('slots-email-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = document.getElementById('slots-email').value;
+      doSpin(email);
+    });
+
     // ===== Init =====
     document.addEventListener('DOMContentLoaded', () => {
       renderWinners();
+      buildReels();
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     });
   </script>
 </body>

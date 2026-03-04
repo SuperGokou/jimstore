@@ -318,6 +318,38 @@ async function loadInventory() {
   }
 }
 
+// ===== Giveaway Countdown (to next Sunday) =====
+function updateGiveawayCountdown() {
+  var el = document.getElementById('giveaway-countdown');
+  if (!el) return;
+  var now = new Date();
+  var nextSunday = new Date(now);
+  var dayOfWeek = now.getDay(); // 0 = Sunday
+  var daysUntil = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+  nextSunday.setDate(now.getDate() + daysUntil);
+  nextSunday.setHours(18, 0, 0, 0); // 6 PM Sunday
+  if (nextSunday <= now) {
+    // If it's past 6 PM Sunday, target next Sunday
+    nextSunday.setDate(nextSunday.getDate() + 7);
+  }
+  var diff = nextSunday - now;
+  var d = Math.floor(diff / 86400000);
+  var h = Math.floor((diff % 86400000) / 3600000);
+  var m = Math.floor((diff % 3600000) / 60000);
+  var s = Math.floor((diff % 60000) / 1000);
+  el.innerHTML =
+    '<span class="countdown-label">Drawing in</span>' +
+    '<div class="countdown-digits">' +
+      '<div class="countdown-block"><span class="countdown-num">' + String(d).padStart(2, '0') + '</span><span class="countdown-unit">days</span></div>' +
+      '<span class="countdown-sep">:</span>' +
+      '<div class="countdown-block"><span class="countdown-num">' + String(h).padStart(2, '0') + '</span><span class="countdown-unit">hrs</span></div>' +
+      '<span class="countdown-sep">:</span>' +
+      '<div class="countdown-block"><span class="countdown-num">' + String(m).padStart(2, '0') + '</span><span class="countdown-unit">min</span></div>' +
+      '<span class="countdown-sep">:</span>' +
+      '<div class="countdown-block"><span class="countdown-num">' + String(s).padStart(2, '0') + '</span><span class="countdown-unit">sec</span></div>' +
+    '</div>';
+}
+
 // ===== Init =====
 document.addEventListener('DOMContentLoaded', () => {
   // Tab switching
@@ -328,4 +360,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Default to past events tab (matching Figma design)
   switchTab('past');
   loadInventory();
+  updateGiveawayCountdown();
+  setInterval(updateGiveawayCountdown, 1000);
 });
