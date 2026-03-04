@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inventory - Lucky Breaks</title>
-  <meta name="description" content="Browse our full eBay inventory. Latest pulls and graded slabs from Lucky Breaks, shipped or pickup available.">
+  <title>Pre-order - Lucky Breaks</title>
+  <meta name="description" content="Pre-order your spot in upcoming breaks. Reserve early and never miss a drop at Lucky Breaks.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="../img/webicon.png">
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
@@ -39,41 +40,126 @@
   <!-- Header -->
   <header class="header">
     <div class="container header-inner">
-      <a href="index.html" class="logo">
-        <img src="img/logo.png" alt="Lucky Breaks" class="logo-img">
+      <a href="../index.html" class="logo">
+        <img src="../img/logo.png" alt="Lucky Breaks" class="logo-img">
       </a>
       <nav class="header-nav">
-        <a href="index.html#breaks">Breaks</a>
-        <a href="inventory.html" style="color:var(--color-text)">Inventory</a>
+        <a href="../index.html#breaks">Breaks</a>
+        <a href="inventory.html">Inventory</a>
         <a href="giveaway.html">Giveaway</a>
+        <a href="preorder.html" class="nav-preorder" style="color:white">Pre-order</a>
       </nav>
-      <a href="index.html#hero" class="btn btn-primary btn-sm">Join the VIP List</a>
+      <a href="../index.html#hero" class="btn btn-primary btn-sm">Join the VIP List</a>
     </div>
   </header>
 
-  <!-- Inventory -->
-  <section class="section section-inventory inventory-page-header">
+  <!-- Pre-order Hero -->
+  <section class="section preorder-hero">
     <div class="container">
-      <div class="section-header section-header--row">
-        <div>
-          <div class="pill pill--green">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-            <span>From Our eBay Store</span>
-          </div>
-          <h2 class="section-title">Fresh Inventory</h2>
-          <p class="section-subtitle">Latest pulls and graded slabs from our breaks. Shipped or pickup available.</p>
-          <p id="inventory-timestamp" class="inventory-timestamp"></p>
+      <div class="section-header section-header--center">
+        <div class="pill pill--green">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          <span>Reserve Your Spot</span>
         </div>
-        <a href="https://www.ebay.com/sch/i.html?item=167115244180&rt=nc&_trksid=p4429486.m3561.l161211&_ssn=cardscards.com"
-           target="_blank" rel="noopener" class="link-arrow">
-          View Full eBay Store
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
+        <h1 class="section-title" style="font-size:clamp(32px,5vw,52px)">Pre-order Upcoming Breaks</h1>
+        <p class="section-subtitle">Lock in your spot before breaks go live. Pre-order members get priority access and guaranteed entry.</p>
       </div>
-      <div id="inventory-grid" class="inventory-grid">
-        <div class="spinner-wrap">
-          <div class="spinner"></div>
-          <p>Loading inventory...</p>
+
+      <div class="preorder-grid">
+        <div class="preorder-card">
+          <div class="preorder-card-header">
+            <span class="preorder-card-badge preorder-card-badge--hot">Coming Soon</span>
+            <span class="preorder-card-sport">Football</span>
+          </div>
+          <div class="preorder-card-body">
+            <h3 class="preorder-card-title">2025 Panini Prizm Football Hobby Case</h3>
+            <p class="preorder-card-desc">Full case break -- random team draw. 12 spots available.</p>
+            <div class="preorder-card-details">
+              <div class="preorder-card-detail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <span>TBD</span>
+              </div>
+              <div class="preorder-card-detail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                <span>12 spots</span>
+              </div>
+            </div>
+            <div class="preorder-card-price">$75<span class="preorder-card-price-unit">/spot</span></div>
+          </div>
+          <div class="preorder-card-footer">
+            <form class="preorder-form" data-product="2025 Panini Prizm Football">
+              <div class="input-wrap">
+                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+                <input type="email" name="email" placeholder="Your email" required autocomplete="email" class="input">
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm">Reserve</button>
+            </form>
+            <div class="preorder-success success-message" hidden>Spot reserved! We'll contact you with details.</div>
+          </div>
+        </div>
+
+        <div class="preorder-card">
+          <div class="preorder-card-header">
+            <span class="preorder-card-badge">Pre-order</span>
+            <span class="preorder-card-sport">Baseball</span>
+          </div>
+          <div class="preorder-card-body">
+            <h3 class="preorder-card-title">2025 Topps Chrome Baseball Jumbo Case</h3>
+            <p class="preorder-card-desc">Jumbo case break with guaranteed autos. Random team format.</p>
+            <div class="preorder-card-details">
+              <div class="preorder-card-detail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <span>TBD</span>
+              </div>
+              <div class="preorder-card-detail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                <span>30 spots</span>
+              </div>
+            </div>
+            <div class="preorder-card-price">$50<span class="preorder-card-price-unit">/spot</span></div>
+          </div>
+          <div class="preorder-card-footer">
+            <form class="preorder-form" data-product="2025 Topps Chrome Baseball">
+              <div class="input-wrap">
+                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+                <input type="email" name="email" placeholder="Your email" required autocomplete="email" class="input">
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm">Reserve</button>
+            </form>
+            <div class="preorder-success success-message" hidden>Spot reserved! We'll contact you with details.</div>
+          </div>
+        </div>
+
+        <div class="preorder-card">
+          <div class="preorder-card-header">
+            <span class="preorder-card-badge">Pre-order</span>
+            <span class="preorder-card-sport">Multi-Sport</span>
+          </div>
+          <div class="preorder-card-body">
+            <h3 class="preorder-card-title">2025 Panini Select Multi-Sport Hobby Box</h3>
+            <p class="preorder-card-desc">Mixed sport hobby box break. Football, basketball, and more.</p>
+            <div class="preorder-card-details">
+              <div class="preorder-card-detail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <span>TBD</span>
+              </div>
+              <div class="preorder-card-detail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                <span>8 spots</span>
+              </div>
+            </div>
+            <div class="preorder-card-price">$100<span class="preorder-card-price-unit">/spot</span></div>
+          </div>
+          <div class="preorder-card-footer">
+            <form class="preorder-form" data-product="2025 Panini Select Multi-Sport">
+              <div class="input-wrap">
+                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+                <input type="email" name="email" placeholder="Your email" required autocomplete="email" class="input">
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm">Reserve</button>
+            </form>
+            <div class="preorder-success success-message" hidden>Spot reserved! We'll contact you with details.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -98,7 +184,7 @@
       </div>
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="img/logo.png" alt="Lucky Breaks" class="footer-logo">
+          <img src="../img/logo.png" alt="Lucky Breaks" class="footer-logo">
           <p class="footer-about text-dim">
             We break cases of football cards, baseball, all kinds. Come join the facebook group Football Cards. 2K likes, 2.1K followers.
           </p>
@@ -114,10 +200,10 @@
         <div class="footer-col">
           <h4 class="footer-heading">Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="index.html#breaks">Upcoming Breaks</a></li>
+            <li><a href="../index.html#breaks">Upcoming Breaks</a></li>
             <li><a href="inventory.html">eBay Store</a></li>
             <li><a href="giveaway.html">Weekly Giveaway</a></li>
-            <li><a href="index.html#hero">VIP Access</a></li>
+            <li><a href="../index.html#hero">VIP Access</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -197,7 +283,28 @@
     </div>
   </div>
 
-  <script src="js/likes.js"></script>
-  <script src="js/inventory.js"></script>
+  <script src="../js/likes.js"></script>
+  <script>
+    // ===== Pre-order Forms =====
+    document.querySelectorAll('.preorder-form').forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = e.target.email.value;
+        var product = e.target.dataset.product;
+        console.log('[Pre-order]', product, email);
+        e.target.hidden = true;
+        e.target.nextElementSibling.hidden = false;
+      });
+    });
+
+    // ===== Footer Newsletter =====
+    document.getElementById('footer-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = e.target.email.value;
+      console.log('[Newsletter Signup]', email);
+      e.target.hidden = true;
+      document.getElementById('footer-success').hidden = false;
+    });
+  </script>
 </body>
 </html>

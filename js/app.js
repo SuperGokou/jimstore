@@ -310,7 +310,7 @@ async function loadInventory() {
     if (data.listings.length > 8) {
       grid.innerHTML += `
         <div class="inventory-view-all">
-          <a href="inventory.html" class="btn btn-primary btn-sm">
+          <a href="pages/inventory.html" class="btn btn-primary btn-sm">
             View All Inventory (${data.listings.length})
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
           </a>
