@@ -1300,6 +1300,102 @@ ul { list-style: none; }
   line-height: 30px;
 }
 
+/* ===== Flip Card (Homepage Preview) ===== */
+.inventory-flip-card {
+  perspective: 800px;
+  cursor: pointer;
+}
+
+.inventory-flip-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.inventory-flip-card:hover .inventory-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.inventory-flip-front,
+.inventory-flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border-dim);
+}
+
+.inventory-flip-front {
+  background: var(--color-surface);
+}
+
+.inventory-flip-front .inventory-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inventory-flip-price-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid var(--color-green);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-green);
+}
+
+.inventory-flip-back {
+  background: var(--color-surface);
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inventory-flip-back-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.inventory-flip-back-icon {
+  color: var(--color-green);
+}
+
+.inventory-flip-back-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.inventory-flip-back-price {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-green);
+}
+
+.inventory-flip-back .btn {
+  gap: 6px;
+  margin-top: 4px;
+}
+
 /* ===== Spinner ===== */
 .spinner-wrap {
   grid-column: 1 / -1;

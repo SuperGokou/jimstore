@@ -8,6 +8,7 @@
 ![eBay](https://img.shields.io/badge/eBay_Scraper-E53238?style=flat&logo=ebay&logoColor=white)
 ![License](https://img.shields.io/badge/License-Private-lightgrey?style=flat)
 ![Status](https://img.shields.io/badge/Status-Active-00ff88?style=flat)
+[![Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-7c3aed?style=flat&logo=githubpages&logoColor=white)](https://supergokou.github.io/jimstore/)
 
 A dark-themed, mobile-responsive landing page and inventory browser for **Lucky Breaks**, a trading card break business based in Vancouver, WA. The site captures emails for VIP early access, displays upcoming breaks, showcases live eBay inventory (auto-scraped every 2 hours), runs a weekly giveaway, and features community social proof via a Facebook engagement bar.
 

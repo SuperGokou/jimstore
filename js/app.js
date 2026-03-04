@@ -277,28 +277,37 @@ async function loadInventory() {
       return;
     }
 
-    const preview = data.listings.slice(0, 6);
+    const preview = data.listings.slice(0, 8);
 
     grid.innerHTML = preview.map(item => `
-      <a href="${item.link}" target="_blank" rel="noopener" class="inventory-card">
-        <img
-          src="${item.image}"
-          alt="${item.title}"
-          class="inventory-card-img"
-          loading="lazy"
-          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22 fill=%22%2313131f%22%3E%3Crect width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23555570%22 font-size=%2214%22%3ENo Image%3C/text%3E%3C/svg%3E'"
-        >
-        <div class="inventory-card-body">
-          <p class="inventory-card-title">${item.title}</p>
-          <div class="inventory-card-footer">
-            <span class="inventory-card-price">${item.price}</span>
-            <span class="btn-outline">Buy Now</span>
+      <div class="inventory-flip-card">
+        <div class="inventory-flip-inner">
+          <div class="inventory-flip-front">
+            <img
+              src="${item.image}"
+              alt="${item.title}"
+              class="inventory-card-img"
+              loading="lazy"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22 fill=%22%2313131f%22%3E%3Crect width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23555570%22 font-size=%2214%22%3ENo Image%3C/text%3E%3C/svg%3E'"
+            >
+            <div class="inventory-flip-price-badge">${item.price}</div>
+          </div>
+          <div class="inventory-flip-back">
+            <div class="inventory-flip-back-inner">
+              <svg class="inventory-flip-back-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              <p class="inventory-flip-back-title">${item.title}</p>
+              <span class="inventory-flip-back-price">${item.price}</span>
+              <a href="${item.link}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                Buy Now
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
           </div>
         </div>
-      </a>
+      </div>
     `).join('');
 
-    if (data.listings.length > 6) {
+    if (data.listings.length > 8) {
       grid.innerHTML += `
         <div class="inventory-view-all">
           <a href="inventory.html" class="btn btn-primary btn-sm">
